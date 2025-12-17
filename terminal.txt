@@ -1,0 +1,7 @@
+dotnet new mvc -n LabReport
+
+cd LabReport
+
+dotnet run 
+
+dotnet watch run
