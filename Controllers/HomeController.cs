@@ -10,7 +10,26 @@ public class HomeController : Controller
     {
         return View();
     }
-
+    public IActionResult Admin()
+    {
+        return View();
+    }
+    public IActionResult Applicant()
+    {
+        return View();
+    }
+    [HttpPost]
+    public IActionResult Index(string Name)
+    {
+        if(Name == "Lamia" || Name == "lamia")
+        {
+            return RedirectToAction("Admin");
+        }
+        else
+        {
+            return RedirectToAction("Applicant");
+        }
+    }
     public IActionResult Privacy()
     {
         return View();

@@ -8,19 +8,19 @@
     "net10.0": []
   },
   "packageFolders": {
-    "F:\\Lamia IUBAT\\Users\\lamia.DESKTOP-OB3DGDN.000\\.nuget\\packages\\": {}
+    "F:\\Lamia IUBAT\\Users\\Lamia\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Lamia IUBAT\\Users\\lamia.DESKTOP-OB3DGDN.000\\project\\JobPortal\\JobPortal.csproj",
+      "projectUniqueName": "F:\\Lamia IUBAT\\Users\\Lamia\\BACKUP\\project\\JobPortal\\JobPortal.csproj",
       "projectName": "JobPortal",
-      "projectPath": "F:\\Lamia IUBAT\\Users\\lamia.DESKTOP-OB3DGDN.000\\project\\JobPortal\\JobPortal.csproj",
-      "packagesPath": "F:\\Lamia IUBAT\\Users\\lamia.DESKTOP-OB3DGDN.000\\.nuget\\packages\\",
-      "outputPath": "F:\\Lamia IUBAT\\Users\\lamia.DESKTOP-OB3DGDN.000\\project\\JobPortal\\obj\\",
+      "projectPath": "F:\\Lamia IUBAT\\Users\\Lamia\\BACKUP\\project\\JobPortal\\JobPortal.csproj",
+      "packagesPath": "F:\\Lamia IUBAT\\Users\\Lamia\\.nuget\\packages\\",
+      "outputPath": "F:\\Lamia IUBAT\\Users\\Lamia\\BACKUP\\project\\JobPortal\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "F:\\Lamia IUBAT\\Users\\lamia.DESKTOP-OB3DGDN.000\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "F:\\Lamia IUBAT\\Users\\Lamia\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -68,7 +68,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "F:\\Lamia IUBAT\\Users\\lamia.DESKTOP-OB3DGDN.000\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "F:\\Lamia IUBAT\\Users\\Lamia\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
