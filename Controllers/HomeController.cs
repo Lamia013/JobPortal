@@ -25,6 +25,10 @@ public class HomeController : Controller
         {
             return RedirectToAction("Admin");
         }
+        else if(Name == "job")
+        {
+            return RedirectToAction("Index","Jobs"); //redirected to JobsController
+        }
         else
         {
             return RedirectToAction("Applicant");

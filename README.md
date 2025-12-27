@@ -1,6 +1,6 @@
 # JobPortal
 
-JobPortal is a simple ASP.NET Core MVC web application built to practise C# and the MVC pattern. The project allows users to enter the system either as an admin or as an applicant and demonstrates basic form handling, routing, and page redirection.
+JobPortal is a simple ASP.NET Core MVC web application built to practise C# and the MVC pattern. The project allows users to enter the system either as an admin or as an applicant or as an organizarion and demonstrates basic form handling, routing, and page redirection.
 
 ## Features
 - Role-based redirection (Admin, Applicant and Organizations)
