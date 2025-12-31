@@ -30,9 +30,13 @@
         </div>
 
         <div id="overlayTags" class="mt-2">
-            <span class="tag">React</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Tailwind</span>
+            @if(ViewBag.Tags != null)
+            {
+                foreach(var tag in ViewBag.Tags)
+                {
+                    <span class="tag">@tag</span>
+                }
+            }
         </div>
     </div>
 </div>

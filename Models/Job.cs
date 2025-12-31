@@ -31,4 +31,6 @@ public class Job
     public DateTime? CreateDate { get; set; }
 
     public virtual Organization? Organization { get; set; }
+
+    public string? Tags { get; set; } // e.g., "React,TypeScript,Tailwind"
 }

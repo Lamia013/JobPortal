@@ -26,6 +26,13 @@ public class JobsController : Controller
         {
             return NotFound();
         }
+
+        // Split tags into a list if stored as comma-separated string
+        var tags = string.IsNullOrEmpty(job.Tags) ? new List<string>() : job.Tags.Split(',').ToList();
+
+        // Pass tags to ViewBag
+        ViewBag.Tags = tags;
+
         return View(job);
     }
     // GET: show the form
