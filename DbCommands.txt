@@ -21,8 +21,9 @@ Qualification VARCHAR(50),
 Experience VARCHAR(50),
 Specialization VARCHAR(MAX),
 LastDateToApply Date,
-Salary VARCHAR(50),
+Salary float,
 JobType VARCHAR(50),
+Tags VARCHAR(MAX),
 OrganizationId INT,  -- foreign key
 Address VARCHAR(50),
 Country VARCHAR(50),
@@ -44,20 +45,3 @@ VALUES ('Software Engineer', 5, 'Develop and maintain software applications.', '
 
 
 
-//mim...............
-
-USE JobPortalDB;
-GO
-
-CREATE TABLE dbo.Jobs (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    Title NVARCHAR(150) NOT NULL,
-    Company NVARCHAR(150) NOT NULL,
-    Location NVARCHAR(100) NOT NULL,
-    JobType NVARCHAR(50) NOT NULL,
-    SalaryMin DECIMAL(18,2) NOT NULL,
-    SalaryMax DECIMAL(18,2) NOT NULL,
-    Description NVARCHAR(MAX) NOT NULL,
-    PostedDate DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
