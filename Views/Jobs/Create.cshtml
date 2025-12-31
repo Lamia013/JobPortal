@@ -60,3 +60,68 @@
     <button type="submit">Add Job</button>
 </form>
 </div>
+
+
+
+<!-- mim -->
+@model JobPortal.Models.Job
+@{
+    ViewData["Title"] = "Add Job";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card shadow p-4">
+            <h3 class="mb-4 text-center">Add New Job</h3>
+
+            <form asp-action="Create" method="post">
+                <div class="mb-3">
+                    <label>Job Title</label>
+                    <input asp-for="Title" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label>Company</label>
+                    <input asp-for="Company" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label>Location</label>
+                    <input asp-for="Location" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label>Job Type</label>
+                    <select asp-for="JobType" class="form-select">
+                        <option>Full-time</option>
+                        <option>Part-time</option>
+                        <option>Contract</option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label>Salary Min</label>
+                        <input asp-for="SalaryMin" class="form-control" />
+                    </div>
+                    <div class="col">
+                        <label>Salary Max</label>
+                        <input asp-for="SalaryMax" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label>Description</label>
+                    <textarea asp-for="Description"
+                              class="form-control"
+                              rows="4"></textarea>
+                </div>
+
+                <button class="btn btn-success w-100">
+                    Save Job
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+

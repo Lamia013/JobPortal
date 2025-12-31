@@ -32,3 +32,38 @@ public class Job
 
     public virtual Organization? Organization { get; set; }
 }
+
+// Mim mony.......
+
+using System.ComponentModel.DataAnnotations;
+
+namespace JobPortal.Models
+{
+    public class Job
+    {
+        public int Id { get; set; }
+
+        [Required]
+        public string Title { get; set; } = "";
+
+        [Required]
+        public string Company { get; set; } = "";
+
+        [Required]
+        public string Location { get; set; } = "";
+
+        [Required]
+        public string JobType { get; set; } = "";
+
+        [Required]
+        public decimal SalaryMin { get; set; }
+
+        [Required]
+        public decimal SalaryMax { get; set; }
+
+        [Required]
+        public string Description { get; set; } = "";
+
+        public DateTime PostedDate { get; set; }
+    }
+}
