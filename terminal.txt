@@ -1,7 +1,5 @@
-dotnet new mvc -n LabReport
+dotnet new mvc -n JobPortal
 
-cd LabReport
+cd JobPortal
 
-dotnet run 
-
-dotnet watch run
+dotnet run   //  dotnet watch run

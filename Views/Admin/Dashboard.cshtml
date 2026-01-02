@@ -12,9 +12,8 @@
         <h4 class="text-center mb-4">Admin</h4>
         <a class="d-block text-white bg-white bg-opacity-25 fw-bold py-2 px-3 mb-1 text-decoration-none rounded">Dashboard</a>
         <a class="d-block text-white py-2 px-3 mb-1 text-decoration-none"  asp-controller="Jobs" asp-action="Index">Job Listings</a>
-        <button class="d-block text-white py-2 px-3 mb-1 text-decoration-none" style="background-color: transparent; border: none; text-align: left;" data-bs-toggle="modal" data-bs-target="#addJobModal">New Job</button>
-        <div class="text-black">@await Html.PartialAsync("~/Views/Jobs/Create.cshtml", new Job())</div>
-
+        <a asp-controller="Jobs" asp-action="Create" class="d-block text-white py-2 px-3 mb-1 text-decoration-none" style="background-color: transparent; border: none; text-align: left;">Add Job</a>
+    
         <a class="d-block text-white py-2 px-3 mb-1 text-decoration-none">Applicants</a>
         <a class="d-block text-white py-2 px-3 mb-1 text-decoration-none">Organizations</a>
     </div>

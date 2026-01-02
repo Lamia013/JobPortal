@@ -50,3 +50,18 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<script>
+function goToStep2() {
+    document.getElementById('step1').classList.add('d-none');
+    document.getElementById('step2').classList.remove('d-none');
+    document.getElementById('step1Buttons').classList.add('d-none');
+    document.getElementById('step2Buttons').classList.remove('d-none');
+}
+function goToStep1() {
+    document.getElementById('step2').classList.add('d-none');
+    document.getElementById('step1').classList.remove('d-none');
+    document.getElementById('step2Buttons').classList.add('d-none');
+    document.getElementById('step1Buttons').classList.remove('d-none');
+}
+</script>

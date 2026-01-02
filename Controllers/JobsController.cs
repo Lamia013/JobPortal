@@ -43,6 +43,11 @@ public class JobsController : Controller
 
         return View(job);
     }
+    public IActionResult Create()
+    {
+        ViewBag.Organizations = new SelectList(_context.Organizations, "OrganizationId", "CompanyName");
+        return View();
+    }
     // POST: handle form submission
     [HttpPost]
     [ValidateAntiForgeryToken]

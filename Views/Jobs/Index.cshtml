@@ -124,7 +124,19 @@ body { background-color: #f8faff; font-family: 'Inter', 'Segoe UI', sans-serif; 
 
 <div class="container py-5" style="max-width: 850px;">
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addJobModal">Add New Job</button>
-    @await Html.PartialAsync("Create", new Job())
+    <div class="modal fade" id="addJobModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-semibold">Post a New Job</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    @await Html.PartialAsync("_PostCreate", new Job())
+                </div>
+            </div>
+        </div>
+    </div>
     @foreach (var item in Model)
     {
         <div class="job-card">
