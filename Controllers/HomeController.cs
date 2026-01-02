@@ -31,7 +31,7 @@ public class HomeController : Controller
         }
         else if(Name == "org")
         {
-            return RedirectToAction("OrgDash","Admin"); //redirected to AdminController
+            return RedirectToAction("OrgDash","Organization"); //redirected to OrganizationController
         }
         else
         {
