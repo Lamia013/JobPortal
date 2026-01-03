@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
 
-using JobPortal.Models;   // ⭐ VERY IMPORTANT
-using JobPortal.Data;     // ⭐ DbContext এর জন্য
+using JobPortal.Models;   
+using JobPortal.Data;   
 
 public class AccountController : Controller
 {
@@ -119,7 +119,7 @@ public IActionResult OrganizationRegister(Organization model)
 
                 TempData["SuccessMessage"] = $"👋 Welcome {org.OrganizationName}! Login successful.";
 
-                return RedirectToAction("OrgDash","Organization");
+                return RedirectToAction( "OrgDash",  "Organization", new { id = org.OrganizationId });
             }
 
             ViewBag.Error = "Invalid login attempt";

@@ -168,7 +168,7 @@ body { background-color: #f8faff; font-family: 'Inter', 'Segoe UI', sans-serif; 
     <!-- Active Recruitment -->
     <div class="d-flex justify-content-between align-items-center mt-5 mb-3">
         <h6 class="fw-semibold mb-0">Your Active Recruitment</h6>
-        <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addJobModal">New Job 
+        <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addJobModal">New Job </a>
         <div class="modal fade" id="addJobModal" tabindex="-1">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content rounded-4 border-0">
@@ -181,7 +181,7 @@ body { background-color: #f8faff; font-family: 'Inter', 'Segoe UI', sans-serif; 
                     </div>
                 </div>
             </div>
-        </div> </a>
+        </div> 
         <a asp-controller="Jobs" asp-action="Index" class="btn btn-outline-primary btn-sm">View All Jobs</a>
 
     </div>
@@ -211,7 +211,7 @@ body { background-color: #f8faff; font-family: 'Inter', 'Segoe UI', sans-serif; 
 
                             <a href="javascript:void(0)" 
                             class="job-title"
-                            onclick="openJobOverlay('@item.Title','https://via.placeholder.com/48','@item.Organization?.OrganizationName','@item.JobType','@item.Address','@item.Salary','@(item.CreateDate?.ToString("MMM dd"))','@item.Description')">
+                            onclick="openJobOverlay('@item.Title', '@item.Organization?.OrganizationName','@item.JobType','@item.Address','@item.Salary','@(item.CreateDate?.ToString("MMM dd"))','@item.Description')">
                                 @item.Title
                             </a>
 
@@ -235,8 +235,7 @@ body { background-color: #f8faff; font-family: 'Inter', 'Segoe UI', sans-serif; 
                 <div class="row g-3 mt-3">
                     <div class="col-6">
                         <button class="btn btn-action-outline w-100"
-                            onclick="openJobOverlay('@item.Title','https://via.placeholder.com/48','@item.Organization?.OrganizationName
-','@item.JobType','@item.Address','@item.Salary','@(item.CreateDate?.ToString("MMM dd"))','@item.Description')">
+                            onclick="openJobOverlay('@item.Title','@item.Organization?.OrganizationName','@item.JobType','@item.Address','@item.Salary','@(item.CreateDate?.ToString("MMM dd"))','@item.Description')">
                             Details
                         </button>
                     </div>

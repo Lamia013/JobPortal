@@ -35,6 +35,6 @@ namespace JobPortal.Models
 
         public virtual Organization? Organization { get; set; }
 
-        public string? Tags { get; set; } // e.g., "React,TypeScript,Tailwind"
+        public string? Tags { get; set; }
     }
 }

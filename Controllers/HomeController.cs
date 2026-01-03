@@ -9,9 +9,27 @@ namespace JobPortal.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly IWebHostEnvironment _env;
+
+    public HomeController(IWebHostEnvironment env)
+    {
+        _env = env;
+    }
     public IActionResult Index()
     {
-        return View();
+        string filesPath = Path.Combine(_env.WebRootPath, "files");
+
+        if (!Directory.Exists(filesPath))
+        {
+            return Content("Folder not found: " + filesPath);
+        }
+
+        List<string> pdfNames = Directory
+            .GetFiles(filesPath, "*.pdf")
+            .Select(Path.GetFileName)
+            .ToList();
+
+        return View(pdfNames);
     }
     public IActionResult Admin()
     {

@@ -41,6 +41,7 @@
                 <thead style="background-color: #f8fafc;">
                     <tr class="text-muted small">
                         <th class="ps-4 py-3 border-0">APPLICANT</th>
+                        <th class="py-3 border-0">DETAILS</th>
                         <th class="py-3 border-0">STATUS</th>
                         <th class="pe-4 py-3 border-0 text-end">DECISIONS</th>
                     </tr>
@@ -64,7 +65,10 @@
                                     <div class="small text-muted">lj@g.com</div>
                                 </td>
                                 <td class="py-3">
-                                    <span class="badge bg-blue-soft border-0 text-uppercase px-2" style="font-size: 10px;">Pending</span>
+                                    <span class="btn text-uppercase px-2" style="font-size: 10px;"><a asp-controller="Home" asp-action="Index">Show</a></span>
+                                </td>
+                                <td class="py-3">
+                                    <span class="btn text-uppercase px-2" style="font-size: 10px;">Pending</span>
                                 </td>
                                 <td class="pe-4 py-3 text-end">
                                     <div class="d-flex justify-content-end gap-2">

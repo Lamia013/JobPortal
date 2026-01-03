@@ -12,7 +12,7 @@ namespace JobPortal.Models
 
         public string Role { get; set; } = string.Empty;
 
-        public string? Website { get; set; }   // nullable
+        public string? Website { get; set; }  
 
         public ICollection<Job> Jobs { get; set; }
 
