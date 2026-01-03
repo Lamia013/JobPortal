@@ -14,6 +14,7 @@ namespace JobPortal.Models
 
         public string? Website { get; set; }   // nullable
 
-        public ICollection<Job>? Jobs { get; set; } // nullable
+        public ICollection<Job> Jobs { get; set; }
+
     }
 }

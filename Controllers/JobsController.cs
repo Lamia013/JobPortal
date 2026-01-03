@@ -23,7 +23,7 @@ public class JobsController : Controller
         ViewBag.Organizations = new SelectList(
             _context.Organizations.ToList(),
             "OrganizationId",
-            "CompanyName"
+            "OrganizationName"
         );
         var jobs = _context.Jobs
             .Include(j => j.Organization)
