@@ -29,7 +29,8 @@ public class HomeController : Controller
             .Select(Path.GetFileName)
             .ToList();
 
-        return View(pdfNames);
+        //return View(pdfNames);
+        return RedirectToAction("Index", "Jobs");
     }
     public IActionResult Admin()
     {

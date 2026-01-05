@@ -101,15 +101,6 @@ public IActionResult OrganizationRegister(Organization model)
                 HttpContext.Session.SetString("UserEmail", user.Email);
 
                 HttpContext.Session.SetString("Role", "User");
-                //  APPLY FLOW CHECK
-                if (model.ApplyForms && model.JobId != null)
-                {
-                    // Apply form এ পাঠাবে
-                    return RedirectToAction("Create", "Apply",
-                        new { jobId = model.JobId });
-                }
-
-                
 
                 TempData["SuccessMessage"] = $"👋 Welcome {user.FullName}! Login successful.";
 
@@ -149,4 +140,3 @@ public IActionResult OrganizationRegister(Organization model)
             return RedirectToAction("Index", "Home");
         }
     }
-

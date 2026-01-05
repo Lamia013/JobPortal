@@ -42,12 +42,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVc2VyUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/Lamia IUBAT/Users/Lamia/BACKUP/JobPortal/Views/Admin/Applicants.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQXBwbGljYW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/Lamia IUBAT/Users/Lamia/BACKUP/JobPortal/Views/Admin/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/Lamia IUBAT/Users/Lamia/BACKUP/JobPortal/Views/Admin/JobStats.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSm9iU3RhdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Lamia IUBAT/Users/Lamia/BACKUP/JobPortal/Views/Admin/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Lamia IUBAT/Users/Lamia/BACKUP/JobPortal/Views/Applicant/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwbGljYW50XERhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Lamia IUBAT/Users/Lamia/BACKUP/JobPortal/Views/Applicant/Notifications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwbGljYW50XE5vdGlmaWNhdGlvbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Lamia IUBAT/Users/Lamia/BACKUP/JobPortal/Views/Apply/ApplicantDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwbHlcQXBwbGljYW50RGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Lamia IUBAT/Users/Lamia/BACKUP/JobPortal/Views/Apply/Apply.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwbHlcQXBwbHkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/Lamia IUBAT/Users/Lamia/BACKUP/JobPortal/Views/Home/About.cshtml]
