@@ -100,5 +100,41 @@ namespace JobPortal.Controllers
             return RedirectToAction("Dashboard", "Applicant");
 
         }
+        public IActionResult ApplicantDashboard()
+        {
+            var email = HttpContext.Session.GetString("UserEmail");
+
+            if (email == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var applications = _context.ApplyForms
+                .Where(a => a.Email == email)
+                .OrderByDescending(a => a.AppliedDate)
+                .ToList();
+
+            ViewBag.Total = applications.Count;
+            ViewBag.Pending = applications.Count(a => a.Status == "Pending");
+            ViewBag.Accepted = applications.Count(a => a.Status == "Accepted");
+            ViewBag.Rejected = applications.Count(a => a.Status == "Rejected");
+
+             //  Graph Data (Date wise apply count)
+        var chartData = applications
+            .GroupBy(a => a.AppliedDate.Date)
+            .Select(g => new
+            {
+                Date = g.Key.ToString("dd MMM"),
+                Count = g.Count()
+            })
+            .OrderBy(x => x.Date)
+            .ToList();
+
+        ViewBag.ChartLabels = chartData.Select(x => x.Date).ToList();
+        ViewBag.ChartValues = chartData.Select(x => x.Count).ToList();
+
+
+            return View(applications);
+        }
     }
 }

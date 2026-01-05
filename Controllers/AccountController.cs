@@ -61,10 +61,13 @@ public IActionResult OrganizationRegister(Organization model)
 
         // ================= LOGIN =================
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(bool fromApply = false, int? jobId = null)
         {
+            ViewBag.FromApply = fromApply;
+            ViewBag.JobId = jobId;
             return View();
         }
+
 
         [HttpPost]
         public IActionResult Login(LoginViewModel model)
@@ -98,10 +101,19 @@ public IActionResult OrganizationRegister(Organization model)
                 HttpContext.Session.SetString("UserEmail", user.Email);
 
                 HttpContext.Session.SetString("Role", "User");
+                //  APPLY FLOW CHECK
+                if (model.ApplyForms && model.JobId != null)
+                {
+                    // Apply form এ পাঠাবে
+                    return RedirectToAction("Create", "Apply",
+                        new { jobId = model.JobId });
+                }
+
+                
 
                 TempData["SuccessMessage"] = $"👋 Welcome {user.FullName}! Login successful.";
 
-                return RedirectToAction("Applicant", "Home");
+                return RedirectToAction("Dashboard", "Applicant");
             }
 
             // ================= ORGANIZATION LOGIN =================

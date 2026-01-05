@@ -15,11 +15,16 @@
             </div>
             <!--<button class="btn btn-primary ms-auto">Apply Now</button>-->
 
-            <a asp-controller="Apply"
-                asp-action="Apply"
-                class="btn btn-primary ms-auto">
+            <a asp-controller="Account"
+            asp-action="Login"
+            asp-route-fromApply="1"
+            asp-route-jobId="@job.JobId"
+
+            class="btn btn-primary">
                 Apply Now
             </a>
+
+
 
 
         </div>
