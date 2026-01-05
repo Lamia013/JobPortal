@@ -75,6 +75,7 @@ public IActionResult OrganizationRegister(Organization model)
                 HttpContext.Session.SetString("Role", "Admin");
                 HttpContext.Session.SetString("UserName", "Admin");
 
+
                 TempData["SuccessMessage"] = "👋 Welcome Admin! Login successful.";
 
                 return RedirectToAction("Dashboard", "Admin");
@@ -94,6 +95,8 @@ public IActionResult OrganizationRegister(Organization model)
 
                 HttpContext.Session.SetInt32("UserId", user.Id);
                 HttpContext.Session.SetString("UserName", user.FullName);
+                HttpContext.Session.SetString("UserEmail", user.Email);
+
                 HttpContext.Session.SetString("Role", "User");
 
                 TempData["SuccessMessage"] = $"👋 Welcome {user.FullName}! Login successful.";
