@@ -240,10 +240,8 @@ body { background-color: #f8faff; font-family: 'Inter', 'Segoe UI', sans-serif; 
                         </button>
                     </div>
                     <div class="col-6">
-                    <button class="btn btn-hiring-panel w-100" type="button" onclick="openOverlay(@item.JobId)">
-                                Hiring Panel
-                            </button>
-@await Html.PartialAsync("~/Views/Admin/JobStats.cshtml",item)
+                    <button class="btn btn-hiring-panel w-100" type="button" onclick="openOverlay(@item.JobId)"> Hiring Panel </button>
+                    @await Html.PartialAsync("~/Views/Admin/JobStats.cshtml",item)
                     </div>
                 </div>
             </div>

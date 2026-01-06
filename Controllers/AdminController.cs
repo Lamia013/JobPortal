@@ -28,9 +28,8 @@ public class AdminController : Controller
         ViewBag.TotalJobs = jobs.Count();
         ViewBag.TotalOrganizations = _context.Organizations.Count();
 
-        // You do not have applications table yet, so vacancy is the only honest proxy
-        ViewBag.TotalApplications = jobs.Sum(j => j.Vacancy ?? 0);
-        ViewBag.TotalApplicants = jobs.Sum(j => j.Vacancy ?? 0);
+        ViewBag.TotalApplications =  _context.ApplyForms.Count();
+        ViewBag.TotalApplicants = _context.Users.Count();
 
         ViewBag.RecentJobs = jobs
             .OrderByDescending(j => j.CreateDate)

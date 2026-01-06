@@ -25,6 +25,7 @@ public class JobsController : Controller
         var jobs = _context.Jobs
             .Include(j => j.Organization)
             .Include(j => j.Bookmarks)
+            .Include(j => j.ApplyForms)
             .AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(keyword))
@@ -84,8 +85,6 @@ public class JobsController : Controller
         return View(job);
     }
 
-    // Toggle bookmark for a job (only for logged-in users)
-// Toggle bookmark for a job
 [HttpPost]
 public IActionResult Toggle([FromBody] int jobId)
 {
