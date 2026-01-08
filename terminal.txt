@@ -9,4 +9,4 @@ dotnet run   //  dotnet watch run
 
 taskkill /IM JobPortal.exe /F
 dotnet clean
-dotnet run
+dotnet  watch run

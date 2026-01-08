@@ -1,9 +1,35 @@
-@model IEnumerable<Job>
+@model IEnumerable<JobPortal.Models.Job>
 
 @{
     ViewData["Title"] = "Job Portal";
 }
+<script>
+function deleteJob(jobId, orgId) {
+    if (!confirm("Are you sure you want to delete this job?")) return;
 
+    fetch('/Organization/DeleteJob', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ jobId: jobId, orgId: orgId })  // include orgId
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            const jobCard = document.querySelector(`.job-card[data-job-id='${jobId}']`);
+            if (jobCard) jobCard.remove();
+            const notif = document.getElementById('notification');
+            notif.textContent = data.message;
+            notif.style.background = "hsl(231, 100%, 62%)";
+            notif.style.display = "block";
+            setTimeout(() => { notif.style.display = "none"; }, 3000);
+        } else {
+            alert("Error deleting job: " + data.message);
+        }
+    })
+    .catch(err => console.error(err));
+}
+
+</script>
 <!-- Bootstrap Icons -->
 <style>
 body { background-color: #f8faff; font-family: 'Inter', 'Segoe UI', sans-serif; }
@@ -124,6 +150,9 @@ body { background-color: #f8faff; font-family: 'Inter', 'Segoe UI', sans-serif; 
 }
 </style>
 <body>
+    <div id="notification" 
+     style="position:fixed; top:20px; right:20px; z-index:2000; display:none; padding:15px 20px; border-radius:8px; background:#16a34a; color:white; box-shadow:0 2px 6px rgba(0,0,0,0.2); font-weight:600;">
+</div>
 <div class="container my-5">
 
     <!-- Hero Card -->
@@ -180,7 +209,7 @@ body { background-color: #f8faff; font-family: 'Inter', 'Segoe UI', sans-serif; 
         <div class="row g-3">
             @foreach (var item in Model)
             {
-                <div class="job-card">
+                <div class="job-card" data-job-id="@item.JobId">
                     <div class="d-flex justify-content-between">
                     <div class="d-flex gap-3">
                         <div>
@@ -208,8 +237,9 @@ body { background-color: #f8faff; font-family: 'Inter', 'Segoe UI', sans-serif; 
                     </div>
                     
                     <div class="icon-group d-flex gap-3">
-                        <a asp-action="Edit" asp-route-id="@item.JobId" class="text-decoration-none"><i class="bi bi-pencil"></i></a>
-                        <i class="bi bi-trash"></i>
+                        <a asp-controller="Jobs" asp-action="Edit" asp-route-id="@item.JobId" class="text-decoration-none"><i class="bi bi-pencil"></i></a>
+                        <i class="bi bi-trash" style="cursor:pointer;"   onclick="deleteJob(@item.JobId, @ViewBag.OrganizationId)"></i>
+
                     </div>
                     </div>
 
@@ -231,8 +261,6 @@ body { background-color: #f8faff; font-family: 'Inter', 'Segoe UI', sans-serif; 
     }
 </div>
 @await Html.PartialAsync("~/Views/Jobs/Details.cshtml")
+
+
 </body>
-
-
-
-

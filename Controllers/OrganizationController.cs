@@ -17,6 +17,11 @@ public class OrganizationController : Controller
 
     public IActionResult OrgDash(int id)
     {
+        ViewBag.Organizations = new SelectList(
+            _context.Organizations.ToList(),
+            "OrganizationId",
+            "OrganizationName"
+        );
         var jobs = _context.Jobs
             .Include(j => j.Organization)
             .Include(j => j.ApplyForms) // navigation property
@@ -30,6 +35,7 @@ public class OrganizationController : Controller
     // CHANGED: Add UpdateStatus for org
     public IActionResult UpdateStatus(int id, string status, int orgId)
 {
+    
     var app = _context.ApplyForms.FirstOrDefault(a => a.Id == id);
     if (app == null)
         return RedirectToAction("OrgDash", new { id = orgId });
@@ -50,5 +56,24 @@ public class OrganizationController : Controller
     TempData["SuccessMessage"] = "Status updated & email sent!";
     return RedirectToAction("OrgDash", new { id = orgId });
 }
+public class DeleteJobRequest
+{
+    public int JobId { get; set; }
+    public int OrgId { get; set; }
+}
 
+[HttpPost]
+public IActionResult DeleteJob([FromBody] DeleteJobRequest req)
+{
+    var job = _context.Jobs
+        .Include(j => j.Organization)
+        .FirstOrDefault(j => j.JobId == req.JobId && j.OrganizationId == req.OrgId);
+
+    if (job == null)
+        return Json(new { success = false, message = "Job not found" });
+
+    _context.Jobs.Remove(job);
+    _context.SaveChanges();
+    return Json(new { success = true, message = $"🗑️ Job '{job.Title}' deleted successfully!" });
+}
 }
