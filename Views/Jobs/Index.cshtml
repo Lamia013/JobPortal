@@ -286,12 +286,11 @@ function deleteJob(jobId) {
                             onclick="toggleBookmark(@item.JobId, this)">
                         </i>
                     }
-                    @if (isPrivileged){
+                    @if (role=="Admin"){
                         <a asp-action="Edit" asp-route-id="@item.JobId" class="text-decoration-none">
                             <i class="bi bi-pencil"></i>
                         </a>
-                         <i class="bi bi-trash" style="cursor:pointer;"  onclick="deleteJob(@item.JobId)"></i>
-                    }
+                        <i class="bi bi-trash" style="cursor:pointer;"  onclick="deleteJob(@item.JobId)"></i>}
                 </div>
                 </div>
 
