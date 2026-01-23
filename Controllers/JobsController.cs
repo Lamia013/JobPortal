@@ -30,11 +30,12 @@ public class JobsController : Controller
 
         if (!string.IsNullOrWhiteSpace(keyword))
         {
+            string search = keyword.Trim().ToLower();
             jobs = jobs.Where(j =>
-                j.Title.Contains(keyword) ||
-                j.Address.Contains(keyword) ||
-                (j.Organization != null &&
-                 j.Organization.OrganizationName.Contains(keyword))
+                j.Title.ToLower().Contains(search) ||
+                j.Address.ToLower().Contains(search) ||
+                j.JobType.ToLower().Contains(search) ||
+                (j.Organization != null && j.Organization.OrganizationName.ToLower().Contains(search))
             );
         }
 
@@ -42,6 +43,7 @@ public class JobsController : Controller
         {
             jobs = jobs.Where(j => types.Contains(j.JobType));
         }
+        ViewBag.CurrentSearch = keyword;
 
         return View(jobs.ToList());
     }

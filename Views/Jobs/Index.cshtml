@@ -191,50 +191,87 @@ function deleteJob(jobId) {
 
         <!-- FILTER SIDEBAR -->
         <div class="col-md-3">
-            <div class="card shadow-sm p-3">
-                <h6 class="fw-bold mb-3">Filters</h6>
+    <div class="card shadow-sm p-3">
+        <h6 class="fw-bold mb-3">
+            <i class="bi bi-search"></i> Search & Filter
+        </h6>
 
-                <form method="get">
+        <form method="get" asp-action="Index" asp-controller="Jobs">
 
-                    <!-- KEYWORD -->
-                    <input name="keyword"
-                        class="form-control mb-3"
-                        placeholder="Search jobs..." />
-
-                    <!-- MULTI JOB TYPE -->
-                    <label class="fw-semibold mb-2">Job Type</label>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="types" value="Full-time">
-                        <label class="form-check-label">Full-time</label>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="types" value="Part-time">
-                        <label class="form-check-label">Part-time</label>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="types" value="Contract">
-                        <label class="form-check-label">Contract</label>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="types" value="Freelancing">
-                        <label class="form-check-label">Freelancing</label>
-                    </div>
-
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" name="types" value="Internship">
-                        <label class="form-check-label">Internship</label>
-                    </div>
-
-                    <button class="btn btn-primary w-100">
-                        Apply Filter
-                    </button>
-                </form>
+            <!-- KEYWORD SEARCH -->
+            <div class="mb-3">
+                <input type="text"
+                       name="keyword"
+                       class="form-control"
+                       placeholder="Search by title, company, or location"
+                       value="@Context.Request.Query["keyword"]" />
             </div>
-        </div>
+
+            <!-- JOB TYPE FILTER -->
+            <label class="fw-semibold mb-2 d-block">Job Type</label>
+
+            @{
+                var selectedTypes = Context.Request.Query["types"];
+            }
+
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="types"
+                       value="Full-time"
+                       @(selectedTypes.Contains("Full-time") ? "checked" : "") />
+                <label class="form-check-label">Full-time</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="types"
+                       value="Part-time"
+                       @(selectedTypes.Contains("Part-time") ? "checked" : "") />
+                <label class="form-check-label">Part-time</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="types"
+                       value="Contract"
+                       @(selectedTypes.Contains("Contract") ? "checked" : "") />
+                <label class="form-check-label">Contract</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="types"
+                       value="Freelancing"
+                       @(selectedTypes.Contains("Freelancing") ? "checked" : "") />
+                <label class="form-check-label">Freelancing</label>
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="types"
+                       value="Internship"
+                       @(selectedTypes.Contains("Internship") ? "checked" : "") />
+                <label class="form-check-label">Internship</label>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <button type="submit" class="btn btn-primary w-100 mb-2">
+                Apply Filters
+            </button>
+
+            <a asp-action="Index" asp-controller="Jobs" class="btn btn-outline-secondary w-100">
+                Clear Filters
+            </a>
+
+        </form>
+    </div>
+</div>
+
     <div class="container py-5" style="max-width: 850px;">
         @if (role == "Admin" || role == "Organization")
         {
@@ -314,7 +351,7 @@ function deleteJob(jobId) {
             </div>
         }
     </div>
-    @await Html.PartialAsync("~/Views/Jobs/Details.cshtml")
+    
 
 
 </body></html>
