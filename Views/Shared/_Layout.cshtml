@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http
+@{ //todo: applicant dashboard theke remove details
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +38,27 @@
 @{
     var role = Context.Session.GetString("Role");
 }
+@{
+                string homeController = "Home";
+                string homeAction = "Index";
 
+                if (role == "Admin")
+                {
+                    homeController = "Admin";
+                    homeAction = "Dashboard"; 
+                }
+                else if (role == "Organization")
+                {
+                    homeController = "Organization";
+                    homeAction = "OrgDash"; 
+                }
+                else if (role == "Applicant")
+                {
+                    homeController = "Applicant";
+                    homeAction = "Dashboard"; 
+                }
+
+}
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg" style="background-color:#0d6efd;">
     <div class="container">
@@ -54,18 +76,22 @@
             asp-action="About">
                 About Us
             </a>
-            <a class="btn btn-white-blue"
-                   asp-controller="Home"
-                   asp-action="Index">
-                    Home
-            </a>
-
             
             <a class="btn btn-white-blue"
-                   asp-controller="Admin"
-                   asp-action="Login">
+               asp-controller=@homeController
+               asp-action=@homeAction>
+                Home
+            </a>
+
+            <!-- Only show Admin button if the user is NOT an admin -->
+            @if (role != "Admin")
+            {
+                <a class="btn btn-white-blue"
+                asp-controller="Admin"
+                asp-action="Login">
                     Admin
                 </a>
+            }
         </div>
 
         <!-- RIGHT MENU -->
@@ -135,6 +161,10 @@ function goToStep1() {
 
 </script>
 @RenderSection("Scripts", required: false)
-@await Html.PartialAsync("~/Views/Jobs/Details.cshtml")
+
+@if (ViewData["ShowDetailsPartial"] == null || (bool)ViewData["ShowDetailsPartial"] == true)
+{
+    @await Html.PartialAsync("~/Views/Jobs/Details.cshtml")
+}
 </body>
 </html>

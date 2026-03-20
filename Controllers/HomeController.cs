@@ -67,6 +67,7 @@ public class HomeController : Controller
     }
     public IActionResult About()
     {
+        ViewData["ShowDetailsPartial"] = false;
         return View();
     }
 
