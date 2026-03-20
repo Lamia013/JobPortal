@@ -174,7 +174,7 @@ function deleteJob(jobId) {
 <body>
     @{
         var role = Context.Session.GetString("Role");
-        var isPrivileged = role == "Admin" || role == "Organization";
+        var isPrivileged = role == "Admin";
         var detailsColClass = isPrivileged ? "col-6" : "col-12";
    
         int? userId = Context.Session.GetInt32("UserId") ?? 0;
@@ -212,53 +212,20 @@ function deleteJob(jobId) {
 
             @{
                 var selectedTypes = Context.Request.Query["types"];
+                var jobTypes = ViewBag.JobTypes as List<string> ?? new List<string>();
             }
 
-            <div class="form-check">
-                <input class="form-check-input"
-                       type="checkbox"
-                       name="types"
-                       value="Full-time"
-                       @(selectedTypes.Contains("Full-time") ? "checked" : "") />
-                <label class="form-check-label">Full-time</label>
-            </div>
-
-            <div class="form-check">
-                <input class="form-check-input"
-                       type="checkbox"
-                       name="types"
-                       value="Part-time"
-                       @(selectedTypes.Contains("Part-time") ? "checked" : "") />
-                <label class="form-check-label">Part-time</label>
-            </div>
-
-            <div class="form-check">
-                <input class="form-check-input"
-                       type="checkbox"
-                       name="types"
-                       value="Contract"
-                       @(selectedTypes.Contains("Contract") ? "checked" : "") />
-                <label class="form-check-label">Contract</label>
-            </div>
-
-            <div class="form-check">
-                <input class="form-check-input"
-                       type="checkbox"
-                       name="types"
-                       value="Freelancing"
-                       @(selectedTypes.Contains("Freelancing") ? "checked" : "") />
-                <label class="form-check-label">Freelancing</label>
-            </div>
-
-            <div class="form-check mb-3">
-                <input class="form-check-input"
-                       type="checkbox"
-                       name="types"
-                       value="Internship"
-                       @(selectedTypes.Contains("Internship") ? "checked" : "") />
-                <label class="form-check-label">Internship</label>
-            </div>
-
+            @foreach (var jt in jobTypes)
+            {
+                <div class="form-check">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        name="types"
+                        value="@jt"
+                        @(selectedTypes.Contains(jt) ? "checked" : "") />
+                    <label class="form-check-label">@jt</label>
+                </div>
+            }
             <!-- ACTION BUTTONS -->
             <button type="submit" class="btn btn-primary w-100 mb-2">
                 Apply Filters
@@ -311,7 +278,7 @@ function deleteJob(jobId) {
                             <div class="mt-2 d-flex gap-3 meta-text">
                                 <span><i class="bi bi-geo-alt-fill text-primary"></i> @item.Address</span>
                                 <span class="price-text">
-                                    <i class="bi bi-currency-dollar"></i> @item.Salary
+                                    BDT @item.Salary
                                 </span>
                                 <span><i class="bi bi-clock"></i> @(item.CreateDate.HasValue ? item.CreateDate.Value.ToString("MMM dd") : "N/A")</span>
                             </div>

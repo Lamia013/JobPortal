@@ -31,7 +31,6 @@ namespace JobPortal.Controllers
                 .ToList();
 
             // stats for ViewBag
-            ViewData["ShowDetailsPartial"] = false;
             ViewBag.Total = apps.Count;
             ViewBag.Pending = apps.Count(a => a.Status == "Pending");
             ViewBag.Accepted = apps.Count(a => a.Status == "Accepted");

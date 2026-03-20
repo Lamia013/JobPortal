@@ -94,9 +94,11 @@ public IActionResult Login(LoginViewModel model)
             return View(); 
         }
 
-        public IActionResult Applicants()
+public IActionResult Applicants()
 {
     var applicants = _context.ApplyForms
+        .Include(a => a.Job) 
+            .ThenInclude(j => j.Organization)
         .OrderByDescending(a => a.Id)
         .ToList();
 

@@ -1,5 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Http
-@{ //todo: applicant dashboard theke remove details
+@{ //todo: remove the warnings; 
+//STOP inserting same user info again; maybe add search option for applications for admin; 
+//update ui for CRUD of org & applicant; on filter if click on word also select; 
+//add symbol for number of applications for that job;
+    var role = Context.Session.GetString("Role");
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -35,12 +39,11 @@
 <body>
 
 
-@{
-    var role = Context.Session.GetString("Role");
-}
+
 @{
                 string homeController = "Home";
                 string homeAction = "Index";
+                int orgId = 0;
 
                 if (role == "Admin")
                 {
@@ -51,6 +54,7 @@
                 {
                     homeController = "Organization";
                     homeAction = "OrgDash"; 
+                    orgId = Context.Session.GetInt32("OrgId") ?? 0;
                 }
                 else if (role == "Applicant")
                 {
@@ -77,9 +81,9 @@
                 About Us
             </a>
             
-            <a class="btn btn-white-blue"
-               asp-controller=@homeController
-               asp-action=@homeAction>
+        <a class="btn btn-white-blue"
+            asp-controller="@homeController"
+            asp-action="@homeAction">
                 Home
             </a>
 
@@ -123,7 +127,7 @@
 
     @if (TempData["SuccessMessage"] != null)
     {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert"  id="notification" >
             @TempData["SuccessMessage"]
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -131,7 +135,7 @@
 
     @if (TempData["Error"] != null)
     {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="notification" >
             @TempData["Error"]
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -146,25 +150,37 @@
 </footer>
 
 <script>
-function goToStep2() {
-    document.getElementById('step1').classList.add('d-none');
-    document.getElementById('step2').classList.remove('d-none');
-    document.getElementById('step1Buttons').classList.add('d-none');
-    document.getElementById('step2Buttons').classList.remove('d-none');
-}
-function goToStep1() {
-    document.getElementById('step2').classList.add('d-none');
-    document.getElementById('step1').classList.remove('d-none');
-    document.getElementById('step2Buttons').classList.add('d-none');
-    document.getElementById('step1Buttons').classList.remove('d-none');
-}
-
+    function goToStep2() {
+        document.getElementById('step1').classList.add('d-none');
+        document.getElementById('step2').classList.remove('d-none');
+        document.getElementById('step1Buttons').classList.add('d-none');
+        document.getElementById('step2Buttons').classList.remove('d-none');
+    }
+    function goToStep1() {
+        document.getElementById('step2').classList.add('d-none');
+        document.getElementById('step1').classList.remove('d-none');
+        document.getElementById('step2Buttons').classList.add('d-none');
+        document.getElementById('step1Buttons').classList.remove('d-none');
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+            var notif = document.getElementById("notification");
+            if (notif) {
+                notif.style.transition = "opacity 0.5s";
+                notif.style.opacity = "0";
+                setTimeout(() => notif.remove(), 500);
+            }
+        }, 1000);
+    });
 </script>
+
+
 @RenderSection("Scripts", required: false)
 
-@if (ViewData["ShowDetailsPartial"] == null || (bool)ViewData["ShowDetailsPartial"] == true)
+@if (ViewData["ShowDetailsPartial"] != null && (bool)ViewData["ShowDetailsPartial"] == true)
 {
     @await Html.PartialAsync("~/Views/Jobs/Details.cshtml")
 }
+
 </body>
 </html>

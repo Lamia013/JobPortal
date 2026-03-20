@@ -21,7 +21,14 @@ public class JobsController : Controller
             "OrganizationId",
             "OrganizationName"
         );
-
+        // Fetch distinct job types from database
+        var jobTypes = _context.Jobs
+            .Select(j => j.JobType)
+            .Where(jt => !string.IsNullOrEmpty(jt))
+            .Distinct()
+            .ToList();
+        ViewBag.JobTypes = jobTypes;
+        
         var jobs = _context.Jobs
             .Include(j => j.Organization)
             .Include(j => j.Bookmarks)
@@ -44,7 +51,7 @@ public class JobsController : Controller
             jobs = jobs.Where(j => types.Contains(j.JobType));
         }
         ViewBag.CurrentSearch = keyword;
-
+        ViewData["ShowDetailsPartial"] = true;
         return View(jobs.ToList());
     }
 

@@ -15,8 +15,15 @@ public class OrganizationController : Controller
         _email = email;
     }
 
-    public IActionResult OrgDash(int id)
+    public IActionResult OrgDash()
     {
+        var orgId = HttpContext.Session.GetInt32("OrgId");
+        if (orgId == null)
+        {
+            return RedirectToAction("Login", "Account"); // session expired or not logged in
+        }
+
+
         ViewBag.Organizations = new SelectList(
             _context.Organizations.ToList(),
             "OrganizationId",
@@ -25,10 +32,10 @@ public class OrganizationController : Controller
         var jobs = _context.Jobs
             .Include(j => j.Organization)
             .Include(j => j.ApplyForms) // navigation property
-            .Where(j => j.OrganizationId == id)
+            .Where(j => j.OrganizationId == orgId.Value)
             .ToList();
             
-        ViewBag.OrganizationId = id;
+        ViewBag.OrganizationId = orgId.Value;
         return View(jobs); 
     }
 

@@ -125,7 +125,7 @@ public IActionResult OrganizationRegister(Organization model)
 
                 TempData["SuccessMessage"] = $"👋 Welcome {org.OrganizationName}! Login successful.";
 
-                return RedirectToAction( "OrgDash",  "Organization", new { id = org.OrganizationId });
+                return RedirectToAction( "OrgDash",  "Organization");
             }
 
             ViewBag.Error = "Invalid login attempt";

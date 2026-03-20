@@ -66,26 +66,6 @@ VALUES
 
 // ApplyForm
 
-
-CREATE TABLE ApplyForms
-(
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-
-    -- BASIC INFO
-    FullName NVARCHAR(150) NOT NULL,
-    Email NVARCHAR(256) NOT NULL,
-
-    -- RESUME (FILE + PATH)
-    ResumeData VARBINARY(MAX) NOT NULL,      -- ✅ File in DB
-    ResumeFileName NVARCHAR(255) NOT NULL,
-    ResumePath NVARCHAR(500) NOT NULL,       -- ✅ File path in DB
-
-    -- COVER LETTER (FILE + PATH)
-    CoverLetterData VARBINARY(MAX) NOT NULL, -- ✅ File in DB
-    CoverLetterFileName NVARCHAR(255) NOT NULL,
-    CoverLetterPath NVARCHAR(500) NOT NULL   -- ✅ File path in DB
-);
-
 CREATE TABLE ApplyForms (
     Id INT IDENTITY(1,1) PRIMARY KEY,
 
@@ -140,11 +120,13 @@ VALUES
 
 -- Dummy Applications
 -- For ResumeData and CoverLetterData, just insert empty VARBINARY for testing
-INSERT INTO Apply (FullName, Email, ResumeData, ResumeFileName, ResumePath, CoverLetterData, CoverLetterFileName, CoverLetterPath, Status)
+INSERT INTO ApplyForms (FullName, Email, ResumeData, ResumeFileName, ResumePath, CoverLetterData, CoverLetterFileName, CoverLetterPath, Status, AppliedDate,JobId)
 VALUES
-('Lamia Jamal', 'lamia@example.com', 0x0, 'Resume_Lamia.pdf', '/resumes/Resume_Lamia.pdf', 0x0, 'CoverLetter_Lamia.pdf', '/coverletters/CoverLetter_Lamia.pdf', 'Pending'),
-('John Doe', 'john@example.com', 0x0, 'Resume_John.pdf', '/resumes/Resume_John.pdf', 0x0, 'CoverLetter_John.pdf', '/coverletters/CoverLetter_John.pdf', 'Pending'),
-('Jane Smith', 'jane@example.com', 0x0, 'Resume_Jane.pdf', '/resumes/Resume_Jane.pdf', 0x0, 'CoverLetter_Jane.pdf', '/coverletters/CoverLetter_Jane.pdf', 'Pending');
+('c', 'c@c.com', 0x0, 'Resume_c.pdf', '/resumes/Resume_c.pdf', 0x0, 'CoverLetter_c.pdf', '/coverletters/CoverLetter_c.pdf', 'Pending',2026-01-31,13),
+('d', 'd@c.com', 0x0, 'Resume_d.pdf', '/resumes/Resume_d.pdf', 0x0, 'CoverLetter_d.pdf', '/coverletters/CoverLetter_d.pdf', 'Pending',2026-01-31,22),
+('f', 'f@c.com', 0x0, 'Resume_f.pdf', '/resumes/Resume_f.pdf', 0x0, 'CoverLetter_f.pdf', '/coverletters/CoverLetter_f.pdf', 'Pending',2026-01-31,11);
+
+
 
 
 ---added a job fk in apply form
@@ -170,3 +152,9 @@ ALTER TABLE ApplyForms
 ADD CONSTRAINT FK_Apply_Jobs
 FOREIGN KEY (JobId) REFERENCES Jobs(JobId)
 ON DELETE SET NULL;
+
+
+/////////update row
+UPDATE Jobs
+SET CreateDate = GETDATE()
+WHERE JobId = 1;
