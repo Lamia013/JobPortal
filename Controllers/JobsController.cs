@@ -39,9 +39,9 @@ public class JobsController : Controller
         {
             string search = keyword.Trim().ToLower();
             jobs = jobs.Where(j =>
-                j.Title.ToLower().Contains(search) ||
-                j.Address.ToLower().Contains(search) ||
-                j.JobType.ToLower().Contains(search) ||
+                (j.Title != null && j.Title.ToLower().Contains(search)) ||
+                (j.Address != null && j.Address.ToLower().Contains(search)) ||
+                (j.JobType != null && j.JobType.ToLower().Contains(search)) ||
                 (j.Organization != null && j.Organization.OrganizationName.ToLower().Contains(search))
             );
         }

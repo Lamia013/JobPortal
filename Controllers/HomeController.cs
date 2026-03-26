@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using JobPortal.Models;
-using System.Diagnostics;
 using Microsoft.AspNetCore.StaticFiles;
 using System.IO;
 

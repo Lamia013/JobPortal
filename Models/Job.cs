@@ -21,7 +21,7 @@ namespace JobPortal.Models
 
         public double? Salary { get; set; }
 
-        public string? JobType { get; set; }
+        public string JobType { get; set; } = "";
 
         public int? OrganizationId { get; set; }
 
@@ -31,7 +31,7 @@ namespace JobPortal.Models
 
         public string? State { get; set; }
 
-        public DateTime? CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }  = DateTime.Now;
 
         public virtual Organization? Organization { get; set; }
 

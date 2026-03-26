@@ -37,7 +37,6 @@ public class AdminController : Controller
             .Select(j => new
             {
                 Title = j.Title,
-                //Company = j.Organization.OrganizationName
                 Company = j.Organization?.OrganizationName ?? "N/A"
 
 ,
@@ -46,21 +45,19 @@ public class AdminController : Controller
             .ToList();
 
         ViewBag.ChartLabels = jobs
-            .Where(j => j.CreateDate != null)
-            .GroupBy(j => j.CreateDate.Value.Date)
+            .GroupBy(j => j.CreateDate.Date)
             .OrderBy(g => g.Key)
             .Take(7)
             .Select(g => g.Key.ToString("dd MMM"))
             .ToList();
 
         ViewBag.ChartData = jobs
-            .Where(j => j.CreateDate != null)
-            .GroupBy(j => j.CreateDate.Value.Date)
+            .GroupBy(j => j.CreateDate.Date)
             .OrderBy(g => g.Key)
             .Take(7)
             .Select(g => g.Count())
             .ToList();
-
+            
         return View(jobs);
     }
 
@@ -97,8 +94,8 @@ public IActionResult Login(LoginViewModel model)
 public IActionResult Applicants()
 {
     var applicants = _context.ApplyForms
-        .Include(a => a.Job) 
-            .ThenInclude(j => j.Organization)
+        .Include(a => a.Job!) 
+            .ThenInclude(j => j.Organization!)
         .OrderByDescending(a => a.Id)
         .ToList();
 

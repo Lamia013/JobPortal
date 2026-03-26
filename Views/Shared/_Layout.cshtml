@@ -1,8 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http
-@{ //todo: remove the warnings; 
-//STOP inserting same user info again; maybe add search option for applications for admin; 
-//update ui for CRUD of org & applicant; on filter if click on word also select; 
-//add symbol for number of applications for that job;
+@{
     var role = Context.Session.GetString("Role");
 }
 <!DOCTYPE html>
@@ -177,7 +174,7 @@
 
 @RenderSection("Scripts", required: false)
 
-@if (ViewData["ShowDetailsPartial"] != null && (bool)ViewData["ShowDetailsPartial"] == true)
+@if(ViewData["ShowDetailsPartial"] as bool? == true)
 {
     @await Html.PartialAsync("~/Views/Jobs/Details.cshtml")
 }

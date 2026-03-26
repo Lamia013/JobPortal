@@ -16,7 +16,7 @@ namespace JobPortal.Services
         {
             var smtp = _config.GetSection("Smtp");
 
-            var client = new SmtpClient(smtp["Host"], int.Parse(smtp["Port"]))
+            var client = new SmtpClient(smtp["Host"], int.Parse(smtp["Port"]!))
             {
                 Credentials = new NetworkCredential(
                     smtp["Email"],
@@ -27,7 +27,7 @@ namespace JobPortal.Services
 
             var mail = new MailMessage
             {
-                From = new MailAddress(smtp["Email"]),
+                From = new MailAddress(smtp["Email"]!),
                 Subject = subject,
                 Body = body,
                 IsBodyHtml = true

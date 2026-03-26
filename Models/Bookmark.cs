@@ -18,9 +18,9 @@ namespace JobPortal.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         [ForeignKey("UserId")]
-        public virtual User User { get; set; }
+        public virtual User? User { get; set; }
 
         [ForeignKey("JobId")]
-        public virtual Job Job { get; set; }
+        public virtual Job? Job { get; set; }
     }
 }
