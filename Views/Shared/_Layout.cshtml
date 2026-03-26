@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http
 @{
+
     var role = Context.Session.GetString("Role");
 }
 <!DOCTYPE html>
@@ -84,8 +85,8 @@
                 Home
             </a>
 
-            <!-- Only show Admin button if the user is NOT an admin -->
-            @if (role != "Admin")
+            <!-- Only show Admin button if the user is NOT LOGGED IN -->
+            @if (string.IsNullOrEmpty(role))
             {
                 <a class="btn btn-white-blue"
                 asp-controller="Admin"

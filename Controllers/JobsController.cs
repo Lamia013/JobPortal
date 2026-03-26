@@ -73,8 +73,20 @@ public class JobsController : Controller
     // GET: Create Job
     public IActionResult Create()
     {
-        ViewBag.Organizations = new SelectList(_context.Organizations, "OrganizationId", "OrganizationName");
-        return View();
+        int? orgId = HttpContext.Session.GetInt32("OrgId");
+
+        var organizations = _context.Organizations.ToList();
+        ViewBag.Organizations = new SelectList(_context.Organizations, "OrganizationId", "OrganizationName",orgId);
+
+        var job = new Job();
+
+        // auto assign if logged in as org
+        if (orgId != null)
+        {
+            job.OrganizationId = orgId.Value;
+        }
+
+        return View(job);
     }
 
     // POST: Create Job
@@ -82,6 +94,12 @@ public class JobsController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create(Job job)
     {
+        int? orgId = HttpContext.Session.GetInt32("OrgId");
+
+        if (orgId != null)
+        {
+            job.OrganizationId = orgId.Value; // override user input
+        }
         if (ModelState.IsValid)
         {
             job.CreateDate = DateTime.Now;
